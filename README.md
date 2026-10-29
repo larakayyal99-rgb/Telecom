@@ -91,5 +91,4 @@ The shared key is a simple access gate: it does not provide individual users, ro
 Next, I would add separate read-only and operator roles, then test that read-only requests cannot change a subscription.
 
 ## Project status
-
-Prepared with AI assistance for learning. I ran the demo locally on Ubuntu through WSL, passed all 11 automated tests, and repeated the demo against the Docker container. I also checked that the container runs as a non-root user. GitHub Actions has not been run yet. See [test notes](TEST-NOTES.md).
+See [test notes](TEST-NOTES.md).
