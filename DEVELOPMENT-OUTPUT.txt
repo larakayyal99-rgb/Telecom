@@ -1,0 +1,40 @@
+Development environment checks — 29 October 2026
+Not learner-device results. Docker and GitHub Actions not executed.
+
+test_activate_read_and_deactivate (test_api.SubscriptionTests.test_activate_read_and_deactivate) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 201 -
+ok
+test_broken_json (test_api.SubscriptionTests.test_broken_json) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 400 -
+ok
+test_create_starts_inactive (test_api.SubscriptionTests.test_create_starts_inactive) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 201 -
+ok
+test_duplicate_does_not_overwrite (test_api.SubscriptionTests.test_duplicate_does_not_overwrite) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 201 -
+ok
+test_health_is_public (test_api.SubscriptionTests.test_health_is_public) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "GET /health HTTP/1.1" 200 -
+ok
+test_invalid_fields (test_api.SubscriptionTests.test_invalid_fields) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 400 -
+ok
+test_missing_and_wrong_keys_cannot_create (test_api.SubscriptionTests.test_missing_and_wrong_keys_cannot_create) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 401 -
+ok
+test_repeated_activation (test_api.SubscriptionTests.test_repeated_activation) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 201 -
+ok
+test_unknown_subscription (test_api.SubscriptionTests.test_unknown_subscription) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "GET /subscriptions/unknown HTTP/1.1" 404 -
+ok
+test_wrong_content_type (test_api.SubscriptionTests.test_wrong_content_type) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 415 -
+ok
+test_wrong_key_cannot_read_or_activate (test_api.SubscriptionTests.test_wrong_key_cannot_read_or_activate) ... 127.0.0.1 - - [29/Oct/2026 20:10:15] "POST /subscriptions HTTP/1.1" 201 -
+ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.041s
+
+OK
+
+Example client against app.py:
+Missing key: HTTP 401 {'error': 'A valid API key is required.'}
+Invalid plan: HTTP 400 {'error': 'Provide a valid id and a basic or plus plan.'}
+Create: HTTP 201 {'id': 'demo-001', 'plan': 'basic', 'status': 'inactive'}
+Activate: HTTP 200 {'id': 'demo-001', 'plan': 'basic', 'status': 'active'}
+Read: HTTP 200 {'id': 'demo-001', 'plan': 'basic', 'status': 'active'}
+Wrong key: HTTP 401 {'error': 'A valid API key is required.'}
+Deactivate: HTTP 200 {'id': 'demo-001', 'plan': 'basic', 'status': 'inactive'}
+Unknown subscription: HTTP 404 {'error': 'Subscription not found.'}
